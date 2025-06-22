@@ -4060,7 +4060,7 @@ region = "us-west-2"  # Your preferred compute region
      
     
     def render_dashboard_tab(self, config, metrics):
-    """Render the dashboard tab with enhanced styling"""
+        """Render the dashboard tab with enhanced styling"""
     st.markdown('<div class="section-header">🏠 Enterprise Migration Dashboard</div>', unsafe_allow_html=True)
     
     # Calculate dynamic executive summary metrics
