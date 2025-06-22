@@ -3669,253 +3669,238 @@ def render_navigation(self):
     st.markdown('</div>', unsafe_allow_html=True)
     
     def render_sidebar_controls(self):
-        """Render sidebar configuration controls"""
-        st.sidebar.header("🏢 Enterprise Controls")                   
+    """Render sidebar configuration controls"""
+    st.sidebar.header("🏢 Enterprise Controls")                   
 
-        # Get AWS configuration status
-        aws_config = self.render_aws_credentials_section()
-        
-        # Project management section
-        st.sidebar.subheader("📁 Project Management")
-        project_name = st.sidebar.text_input("Project Name", value="Migration-2025-Q1")
-        business_unit = st.sidebar.selectbox("Business Unit", 
-            ["Corporate IT", "Finance", "HR", "Operations", "R&D", "Sales & Marketing"])
-        project_priority = st.sidebar.selectbox("Project Priority", 
-            ["Critical", "High", "Medium", "Low"])
-        migration_wave = st.sidebar.selectbox("Migration Wave", 
-            ["Wave 1 (Pilot)", "Wave 2 (Core Systems)", "Wave 3 (Secondary)", "Wave 4 (Archive)"])
-        
-        # Security and compliance section
-        st.sidebar.subheader("🔒 Security & Compliance")
-        data_classification = st.sidebar.selectbox("Data Classification", 
-            ["Public", "Internal", "Confidential", "Restricted", "Top Secret"])
-        compliance_frameworks = st.sidebar.multiselect("Compliance Requirements", 
-            ["SOX", "GDPR", "HIPAA", "PCI-DSS", "SOC2", "ISO27001", "FedRAMP", "FISMA"])
-        encryption_in_transit = st.sidebar.checkbox("Encryption in Transit", value=True)
-        encryption_at_rest = st.sidebar.checkbox("Encryption at Rest", value=True)
-        data_residency = st.sidebar.selectbox("Data Residency Requirements", 
-            ["No restrictions", "US only", "EU only", "Specific region", "On-premises only"])
-        
-        # Enterprise parameters section
-        st.sidebar.subheader("🎯 Enterprise Parameters")
-        sla_requirements = st.sidebar.selectbox("SLA Requirements", 
-            ["99.9% availability", "99.95% availability", "99.99% availability", "99.999% availability"])
-        rto_hours = st.sidebar.number_input("Recovery Time Objective (hours)", min_value=1, max_value=168, value=4)
-        rpo_hours = st.sidebar.number_input("Recovery Point Objective (hours)", min_value=0, max_value=24, value=1)
-        max_transfer_days = st.sidebar.number_input("Maximum Transfer Days", min_value=1, max_value=90, value=30)
-        
-        # Budget section
-        budget_allocated = st.sidebar.number_input("Allocated Budget ($)", min_value=1000, max_value=10000000, value=100000, step=1000)
-        approval_required = st.sidebar.checkbox("Executive Approval Required", value=True)
-        
-        # Data characteristics section
-        st.sidebar.subheader("📊 Data Profile")
-        data_size_gb = st.sidebar.number_input("Total Data Size (GB)", min_value=1, max_value=1000000, value=10000, step=100)
-        data_types = st.sidebar.multiselect("Data Types", 
-            ["Customer Data", "Financial Records", "Employee Data", "Intellectual Property", 
-             "System Logs", "Application Data", "Database Backups", "Media Files", "Documents"])
-        database_types = st.sidebar.multiselect("Database Systems", 
-            ["Oracle", "SQL Server", "MySQL", "PostgreSQL", "MongoDB", "Cassandra", "Redis", "Elasticsearch"])
-        avg_file_size = st.sidebar.selectbox("Average File Size",
-            ["< 1MB (Many small files)", "1-10MB (Small files)", "10-100MB (Medium files)", 
-             "100MB-1GB (Large files)", "> 1GB (Very large files)"])
-        data_growth_rate = st.sidebar.slider("Annual Data Growth Rate (%)", min_value=0, max_value=100, value=20)
-        data_volatility = st.sidebar.selectbox("Data Change Frequency", 
-            ["Static (rarely changes)", "Low (daily changes)", "Medium (hourly changes)", "High (real-time)"])
-        
-        # Network infrastructure section
-        st.sidebar.subheader("🌐 Network Configuration")
-        network_topology = st.sidebar.selectbox("Network Topology", 
-            ["Single DX", "Redundant DX", "Hybrid (DX + VPN)", "Multi-region", "SD-WAN"])
-        dx_bandwidth_mbps = st.sidebar.number_input("Primary DX Bandwidth (Mbps)", min_value=50, max_value=100000, value=10000, step=100)
-        dx_redundant = st.sidebar.checkbox("Redundant DX Connection", value=True)
-        if dx_redundant:
-            dx_secondary_mbps = st.sidebar.number_input("Secondary DX Bandwidth (Mbps)", min_value=50, max_value=100000, value=10000, step=100)
+    # Get AWS configuration status
+    aws_config = self.render_aws_credentials_section()
+    
+    # Project management section
+    st.sidebar.subheader("📁 Project Management")
+    project_name = st.sidebar.text_input("Project Name", value="Migration-2025-Q1")
+    business_unit = st.sidebar.selectbox("Business Unit", 
+        ["Corporate IT", "Finance", "HR", "Operations", "R&D", "Sales & Marketing"])
+    project_priority = st.sidebar.selectbox("Project Priority", 
+        ["Critical", "High", "Medium", "Low"])
+    migration_wave = st.sidebar.selectbox("Migration Wave", 
+        ["Wave 1 (Pilot)", "Wave 2 (Core Systems)", "Wave 3 (Secondary)", "Wave 4 (Archive)"])
+    
+    # Security and compliance section
+    st.sidebar.subheader("🔒 Security & Compliance")
+    data_classification = st.sidebar.selectbox("Data Classification", 
+        ["Public", "Internal", "Confidential", "Restricted", "Top Secret"])
+    compliance_frameworks = st.sidebar.multiselect("Compliance Requirements", 
+        ["SOX", "GDPR", "HIPAA", "PCI-DSS", "SOC2", "ISO27001", "FedRAMP", "FISMA"])
+    encryption_in_transit = st.sidebar.checkbox("Encryption in Transit", value=True)
+    encryption_at_rest = st.sidebar.checkbox("Encryption at Rest", value=True)
+    data_residency = st.sidebar.selectbox("Data Residency Requirements", 
+        ["No restrictions", "US only", "EU only", "Specific region", "On-premises only"])
+    
+    # Enterprise parameters section
+    st.sidebar.subheader("🎯 Enterprise Parameters")
+    sla_requirements = st.sidebar.selectbox("SLA Requirements", 
+        ["99.9% availability", "99.95% availability", "99.99% availability", "99.999% availability"])
+    rto_hours = st.sidebar.number_input("Recovery Time Objective (hours)", min_value=1, max_value=168, value=4)
+    rpo_hours = st.sidebar.number_input("Recovery Point Objective (hours)", min_value=0, max_value=24, value=1)
+    max_transfer_days = st.sidebar.number_input("Maximum Transfer Days", min_value=1, max_value=90, value=30)
+    
+    # Budget section
+    budget_allocated = st.sidebar.number_input("Allocated Budget ($)", min_value=1000, max_value=10000000, value=100000, step=1000)
+    approval_required = st.sidebar.checkbox("Executive Approval Required", value=True)
+    
+    # Data characteristics section
+    st.sidebar.subheader("📊 Data Profile")
+    data_size_gb = st.sidebar.number_input("Total Data Size (GB)", min_value=1, max_value=1000000, value=10000, step=100)
+    data_types = st.sidebar.multiselect("Data Types", 
+        ["Customer Data", "Financial Records", "Employee Data", "Intellectual Property", 
+         "System Logs", "Application Data", "Database Backups", "Media Files", "Documents"])
+    database_types = st.sidebar.multiselect("Database Systems", 
+        ["Oracle", "SQL Server", "MySQL", "PostgreSQL", "MongoDB", "Cassandra", "Redis", "Elasticsearch"])
+    avg_file_size = st.sidebar.selectbox("Average File Size",
+        ["< 1MB (Many small files)", "1-10MB (Small files)", "10-100MB (Medium files)", 
+         "100MB-1GB (Large files)", "> 1GB (Very large files)"])
+    data_growth_rate = st.sidebar.slider("Annual Data Growth Rate (%)", min_value=0, max_value=100, value=20)
+    data_volatility = st.sidebar.selectbox("Data Change Frequency", 
+        ["Static (rarely changes)", "Low (daily changes)", "Medium (hourly changes)", "High (real-time)"])
+    
+    # Network infrastructure section
+    st.sidebar.subheader("🌐 Network Configuration")
+    network_topology = st.sidebar.selectbox("Network Topology", 
+        ["Single DX", "Redundant DX", "Hybrid (DX + VPN)", "Multi-region", "SD-WAN"])
+    dx_bandwidth_mbps = st.sidebar.number_input("Primary DX Bandwidth (Mbps)", min_value=50, max_value=100000, value=10000, step=100)
+    dx_redundant = st.sidebar.checkbox("Redundant DX Connection", value=True)
+    if dx_redundant:
+        dx_secondary_mbps = st.sidebar.number_input("Secondary DX Bandwidth (Mbps)", min_value=50, max_value=100000, value=10000, step=100)
+    else:
+        dx_secondary_mbps = 0
+    
+    network_latency = st.sidebar.slider("Network Latency to AWS (ms)", min_value=1, max_value=500, value=25)
+    network_jitter = st.sidebar.slider("Network Jitter (ms)", min_value=0, max_value=50, value=5)
+    packet_loss = st.sidebar.slider("Packet Loss (%)", min_value=0.0, max_value=5.0, value=0.1, step=0.1)
+    qos_enabled = st.sidebar.checkbox("QoS Enabled", value=True)
+    dedicated_bandwidth = st.sidebar.slider("Dedicated Migration Bandwidth (%)", min_value=10, max_value=90, value=60)
+    business_hours_restriction = st.sidebar.checkbox("Restrict to Off-Business Hours", value=True)
+    
+    # Transfer configuration section
+    st.sidebar.subheader("🚀 Transfer Configuration")
+    num_datasync_agents = st.sidebar.number_input("DataSync Agents", min_value=1, max_value=50, value=5)
+    datasync_instance_type = st.sidebar.selectbox("DataSync Instance Type",
+        ["m5.large", "m5.xlarge", "m5.2xlarge", "m5.4xlarge", "m5.8xlarge", 
+         "c5.2xlarge", "c5.4xlarge", "c5.9xlarge", "r5.2xlarge", "r5.4xlarge"])
+    
+    # Real-world performance modeling
+    st.sidebar.subheader("📊 Performance Modeling")
+    real_world_mode = st.sidebar.checkbox("Real-world Performance Mode", value=True, 
+        help="Include real-world factors like storage I/O, DataSync overhead, and AWS API limits")
+    
+    if real_world_mode:
+        st.sidebar.info("🌍 Modeling includes: Storage I/O limits, DataSync overhead, TCP inefficiencies, S3 API throttling")
+    else:
+        st.sidebar.warning("🧪 Laboratory conditions: Theoretical maximum performance")
+    
+    # Network optimization section
+    st.sidebar.subheader("🌐 Network Optimization")
+    tcp_window_size = st.sidebar.selectbox("TCP Window Size", 
+        ["Default", "64KB", "128KB", "256KB", "512KB", "1MB", "2MB"])
+    mtu_size = st.sidebar.selectbox("MTU Size", 
+        ["1500 (Standard)", "9000 (Jumbo Frames)", "Custom"])
+    if mtu_size == "Custom":
+        custom_mtu = st.sidebar.number_input("Custom MTU", min_value=1280, max_value=9216, value=1500)
+    
+    network_congestion_control = st.sidebar.selectbox("Congestion Control Algorithm",
+        ["Cubic (Default)", "BBR", "Reno", "Vegas"])
+    wan_optimization = st.sidebar.checkbox("WAN Optimization", value=False)
+    parallel_streams = st.sidebar.slider("Parallel Streams per Agent", min_value=1, max_value=100, value=20)
+    use_transfer_acceleration = st.sidebar.checkbox("S3 Transfer Acceleration", value=True)
+    
+    # Storage configuration section
+    st.sidebar.subheader("💾 Storage Strategy")
+    s3_storage_class = st.sidebar.selectbox("Primary S3 Storage Class",
+        ["Standard", "Standard-IA", "One Zone-IA", "Glacier Instant Retrieval", 
+         "Glacier Flexible Retrieval", "Glacier Deep Archive"])
+    enable_versioning = st.sidebar.checkbox("Enable S3 Versioning", value=True)
+    enable_lifecycle = st.sidebar.checkbox("Lifecycle Policies", value=True)
+    cross_region_replication = st.sidebar.checkbox("Cross-Region Replication", value=False)
+    
+    # Geographic configuration section
+    st.sidebar.subheader("🗺️ Geographic Settings")
+    source_location = st.sidebar.selectbox("Source Data Center Location",
+        ["San Jose, CA", "San Antonio, TX", "New York, NY", "Chicago, IL", "Dallas, TX", 
+         "Los Angeles, CA", "Atlanta, GA", "London, UK", "Frankfurt, DE", "Tokyo, JP", "Sydney, AU", "Other"])
+    target_aws_region = st.sidebar.selectbox("Target AWS Region",
+        ["us-east-1 (N. Virginia)", "us-east-2 (Ohio)", "us-west-1 (N. California)", 
+         "us-west-2 (Oregon)", "eu-west-1 (Ireland)", "eu-central-1 (Frankfurt)",
+         "ap-southeast-1 (Singapore)", "ap-northeast-1 (Tokyo)"])
+    
+    # AI Configuration section
+    st.sidebar.subheader("🤖 AI Configuration")
+    enable_real_ai = st.sidebar.checkbox("Enable Real Claude AI API", value=False)
+    
+    if enable_real_ai:
+        if ANTHROPIC_AVAILABLE:
+            claude_api_key = st.sidebar.text_input(
+                "Claude API Key", 
+                type="password", 
+                help="Enter your Anthropic Claude API key for enhanced AI analysis"
+            )
+            ai_model = st.sidebar.selectbox(
+                "AI Model", 
+                ["claude-sonnet-4-20250514", "claude-opus-4-20250514", "claude-3-7-sonnet-20250219", 
+                 "claude-3-5-sonnet-20241022", "claude-3-5-haiku-20241022"],
+                help="Select Claude model for analysis"
+            )
         else:
-            dx_secondary_mbps = 0
-        
-        network_latency = st.sidebar.slider("Network Latency to AWS (ms)", min_value=1, max_value=500, value=25)
-        network_jitter = st.sidebar.slider("Network Jitter (ms)", min_value=0, max_value=50, value=5)
-        packet_loss = st.sidebar.slider("Packet Loss (%)", min_value=0.0, max_value=5.0, value=0.1, step=0.1)
-        qos_enabled = st.sidebar.checkbox("QoS Enabled", value=True)
-        dedicated_bandwidth = st.sidebar.slider("Dedicated Migration Bandwidth (%)", min_value=10, max_value=90, value=60)
-        business_hours_restriction = st.sidebar.checkbox("Restrict to Off-Business Hours", value=True)
-        
-        # Transfer configuration section
-        st.sidebar.subheader("🚀 Transfer Configuration")
-        num_datasync_agents = st.sidebar.number_input("DataSync Agents", min_value=1, max_value=50, value=5)
-        datasync_instance_type = st.sidebar.selectbox("DataSync Instance Type",
-            ["m5.large", "m5.xlarge", "m5.2xlarge", "m5.4xlarge", "m5.8xlarge", 
-             "c5.2xlarge", "c5.4xlarge", "c5.9xlarge", "r5.2xlarge", "r5.4xlarge"])
-        
-        # Real-world performance modeling
-        st.sidebar.subheader("📊 Performance Modeling")
-        real_world_mode = st.sidebar.checkbox("Real-world Performance Mode", value=True, 
-            help="Include real-world factors like storage I/O, DataSync overhead, and AWS API limits")
-        
-        if real_world_mode:
-            st.sidebar.info("🌍 Modeling includes: Storage I/O limits, DataSync overhead, TCP inefficiencies, S3 API throttling")
-        else:
-            st.sidebar.warning("🧪 Laboratory conditions: Theoretical maximum performance")
-        
-        # Network optimization section
-        st.sidebar.subheader("🌐 Network Optimization")
-        tcp_window_size = st.sidebar.selectbox("TCP Window Size", 
-            ["Default", "64KB", "128KB", "256KB", "512KB", "1MB", "2MB"])
-        mtu_size = st.sidebar.selectbox("MTU Size", 
-            ["1500 (Standard)", "9000 (Jumbo Frames)", "Custom"])
-        if mtu_size == "Custom":
-            custom_mtu = st.sidebar.number_input("Custom MTU", min_value=1280, max_value=9216, value=1500)
-        
-        network_congestion_control = st.sidebar.selectbox("Congestion Control Algorithm",
-            ["Cubic (Default)", "BBR", "Reno", "Vegas"])
-        wan_optimization = st.sidebar.checkbox("WAN Optimization", value=False)
-        parallel_streams = st.sidebar.slider("Parallel Streams per Agent", min_value=1, max_value=100, value=20)
-        use_transfer_acceleration = st.sidebar.checkbox("S3 Transfer Acceleration", value=True)
-        
-        # Storage configuration section
-        st.sidebar.subheader("💾 Storage Strategy")
-        s3_storage_class = st.sidebar.selectbox("Primary S3 Storage Class",
-            ["Standard", "Standard-IA", "One Zone-IA", "Glacier Instant Retrieval", 
-             "Glacier Flexible Retrieval", "Glacier Deep Archive"])
-        enable_versioning = st.sidebar.checkbox("Enable S3 Versioning", value=True)
-        enable_lifecycle = st.sidebar.checkbox("Lifecycle Policies", value=True)
-        cross_region_replication = st.sidebar.checkbox("Cross-Region Replication", value=False)
-        
-        # Geographic configuration section
-        st.sidebar.subheader("🗺️ Geographic Settings")
-        source_location = st.sidebar.selectbox("Source Data Center Location",
-            ["San Jose, CA", "San Antonio, TX", "New York, NY", "Chicago, IL", "Dallas, TX", 
-             "Los Angeles, CA", "Atlanta, GA", "London, UK", "Frankfurt, DE", "Tokyo, JP", "Sydney, AU", "Other"])
-        target_aws_region = st.sidebar.selectbox("Target AWS Region",
-            ["us-east-1 (N. Virginia)", "us-east-2 (Ohio)", "us-west-1 (N. California)", 
-             "us-west-2 (Oregon)", "eu-west-1 (Ireland)", "eu-central-1 (Frankfurt)",
-             "ap-southeast-1 (Singapore)", "ap-northeast-1 (Tokyo)"])
-        
-        # AI Configuration section
-        st.sidebar.subheader("🤖 AI Configuration")
-        enable_real_ai = st.sidebar.checkbox("Enable Real Claude AI API", value=False)
-        
-        if enable_real_ai:
-            if ANTHROPIC_AVAILABLE:
-                claude_api_key = st.sidebar.text_input(
-                    "Claude API Key", 
-                    type="password", 
-                    help="Enter your Anthropic Claude API key for enhanced AI analysis"
-                )
-                ai_model = st.sidebar.selectbox(
-                    "AI Model", 
-                    ["claude-sonnet-4-20250514", "claude-opus-4-20250514", "claude-3-7-sonnet-20250219", 
-                     "claude-3-5-sonnet-20241022", "claude-3-5-haiku-20241022"],
-                    help="Select Claude model for analysis"
-                )
-                
-                # Display model information
-                model_info = {
-                    "claude-sonnet-4-20250514": "⚡ Claude Sonnet 4 - Best balance of speed & intelligence (Recommended)",
-                    "claude-opus-4-20250514": "🧠 Claude Opus 4 - Most powerful model for complex analysis",
-                    "claude-3-7-sonnet-20250219": "🎯 Claude 3.7 Sonnet - Extended thinking capabilities",
-                    "claude-3-5-sonnet-20241022": "🔄 Claude 3.5 Sonnet - Reliable performance",
-                    "claude-3-5-haiku-20241022": "💨 Claude 3.5 Haiku - Fastest responses"
-                }
-                st.sidebar.info(model_info.get(ai_model, "Model information not available"))
-            else:
-                st.sidebar.error("Anthropic library not installed. Run: pip install anthropic")
-                claude_api_key = ""
-                ai_model = "claude-3-sonnet-20240229"
-        else:
+            st.sidebar.error("Anthropic library not installed. Run: pip install anthropic")
             claude_api_key = ""
             ai_model = "claude-sonnet-4-20250514"
-            st.sidebar.info("Using built-in AI simulation")
+    else:
+        claude_api_key = ""
+        ai_model = "claude-sonnet-4-20250514"
+        st.sidebar.info("Using built-in AI simulation")
+    
+    # NEW: Database Migration Section - ADD THIS SECTION HERE
+    st.sidebar.subheader("🗄️ Database Migration")
+    
+    # Database migration preferences
+    db_migration_strategy = st.sidebar.selectbox("Migration Strategy",
+        ["Homogeneous (Same DB Type)", "Heterogeneous (Schema Conversion)", "Hybrid Approach"])
+    
+    db_downtime_tolerance = st.sidebar.selectbox("Downtime Tolerance",
+        ["Zero Downtime (CDC)", "Minimal (<1 hour)", "Low (<4 hours)", "Standard (<8 hours)"])
+    
+    db_data_validation = st.sidebar.checkbox("Enable Data Validation", value=True)
+    db_parallel_migration = st.sidebar.checkbox("Parallel Database Migration", value=True)
+    
+    # Database performance requirements
+    db_performance_tier = st.sidebar.selectbox("Performance Tier",
+        ["Burstable (t3)", "General Purpose (m5)", "Memory Optimized (r5)", "Compute Optimized (c5)"])
+    
+    db_backup_retention = st.sidebar.number_input("Backup Retention (days)", min_value=1, max_value=35, value=7)
+    db_multi_az = st.sidebar.checkbox("Multi-AZ Deployment", value=True)
+    
+    # Database security
+    db_encryption_transit = st.sidebar.checkbox("Database Encryption in Transit", value=True)
+    db_encryption_rest = st.sidebar.checkbox("Database Encryption at Rest", value=True)
+    db_vpc_isolation = st.sidebar.checkbox("VPC Database Isolation", value=True)
+    
+    # RETURN STATEMENT - Make sure this includes ALL variables
+    return {
+        'project_name': project_name,
+        'business_unit': business_unit,
+        'project_priority': project_priority,
+        'migration_wave': migration_wave,
+        'data_classification': data_classification,
+        'compliance_frameworks': compliance_frameworks,
+        'encryption_in_transit': encryption_in_transit,
+        'encryption_at_rest': encryption_at_rest,
+        'data_residency': data_residency,
+        'sla_requirements': sla_requirements,
+        'rto_hours': rto_hours,
+        'rpo_hours': rpo_hours,
+        'max_transfer_days': max_transfer_days,
+        'budget_allocated': budget_allocated,
+        'approval_required': approval_required,
+        'data_size_gb': data_size_gb,
+        'data_types': data_types,
+        'database_types': database_types,
+        'avg_file_size': avg_file_size,
+        'data_growth_rate': data_growth_rate,
+        'data_volatility': data_volatility,
+        'network_topology': network_topology,
+        'dx_bandwidth_mbps': dx_bandwidth_mbps,
+        'dx_redundant': dx_redundant,
+        'dx_secondary_mbps': dx_secondary_mbps,
+        'network_latency': network_latency,
+        'network_jitter': network_jitter,
+        'packet_loss': packet_loss,
+        'qos_enabled': qos_enabled,
+        'dedicated_bandwidth': dedicated_bandwidth,
+        'business_hours_restriction': business_hours_restriction,
+        'num_datasync_agents': num_datasync_agents,
+        'datasync_instance_type': datasync_instance_type,
+        'tcp_window_size': tcp_window_size,
+        'mtu_size': mtu_size,
+        'network_congestion_control': network_congestion_control,
+        'wan_optimization': wan_optimization,
+        'parallel_streams': parallel_streams,
+        'use_transfer_acceleration': use_transfer_acceleration,
+        's3_storage_class': s3_storage_class,
+        'enable_versioning': enable_versioning,
+        'enable_lifecycle': enable_lifecycle,
+        'cross_region_replication': cross_region_replication,
+        'source_location': source_location,
+        'target_aws_region': target_aws_region,
+        'enable_real_ai': enable_real_ai,
+        'claude_api_key': claude_api_key,
+        'ai_model': ai_model,
+        'real_world_mode': real_world_mode,
         
-        return {
-            'project_name': project_name,
-            'business_unit': business_unit,
-            'project_priority': project_priority,
-            'migration_wave': migration_wave,
-            'data_classification': data_classification,
-            'compliance_frameworks': compliance_frameworks,
-            'encryption_in_transit': encryption_in_transit,
-            'encryption_at_rest': encryption_at_rest,
-            'data_residency': data_residency,
-            'sla_requirements': sla_requirements,
-            'rto_hours': rto_hours,
-            'rpo_hours': rpo_hours,
-            'max_transfer_days': max_transfer_days,
-            'budget_allocated': budget_allocated,
-            'approval_required': approval_required,
-            'data_size_gb': data_size_gb,
-            'data_types': data_types,
-            'database_types': database_types,
-            'avg_file_size': avg_file_size,
-            'data_growth_rate': data_growth_rate,
-            'data_volatility': data_volatility,
-            'network_topology': network_topology,
-            'dx_bandwidth_mbps': dx_bandwidth_mbps,
-            'dx_redundant': dx_redundant,
-            'dx_secondary_mbps': dx_secondary_mbps,
-            'network_latency': network_latency,
-            'network_jitter': network_jitter,
-            'packet_loss': packet_loss,
-            'qos_enabled': qos_enabled,
-            'dedicated_bandwidth': dedicated_bandwidth,
-            'business_hours_restriction': business_hours_restriction,
-            'num_datasync_agents': num_datasync_agents,
-            'datasync_instance_type': datasync_instance_type,
-            'tcp_window_size': tcp_window_size,
-            'mtu_size': mtu_size,
-            'network_congestion_control': network_congestion_control,
-            'wan_optimization': wan_optimization,
-            'parallel_streams': parallel_streams,
-            'use_transfer_acceleration': use_transfer_acceleration,
-            's3_storage_class': s3_storage_class,
-            'enable_versioning': enable_versioning,
-            'enable_lifecycle': enable_lifecycle,
-            'cross_region_replication': cross_region_replication,
-            'source_location': source_location,
-            'target_aws_region': target_aws_region,
-            'enable_real_ai': enable_real_ai,
-            'claude_api_key': claude_api_key,
-            'ai_model': ai_model,
-            'real_world_mode': real_world_mode
-        }
+        # AWS configuration
+        'use_aws_pricing': aws_config['use_aws_pricing'],
+        'aws_region': aws_config['aws_region'],
+        'aws_configured': aws_config['aws_configured'],
         
-        # At the end of the method, add AWS config to the return dictionary:
-        return {
-            'project_name': project_name,
-            'business_unit': business_unit,
-            # ... all your existing config items ...
-            'real_world_mode': real_world_mode,
-            
-            # Add AWS configuration
-            'use_aws_pricing': aws_config['use_aws_pricing'],
-            'aws_region': aws_config['aws_region'],
-            'aws_configured': aws_config['aws_configured']
-        }
-        
-        # ADD this section to your existing render_sidebar_controls method (before the return statement):
-
-            # NEW: Database Migration Section
-        st.sidebar.subheader("🗄️ Database Migration")
-
-            # Database migration preferences
-        db_migration_strategy = st.sidebar.selectbox("Migration Strategy",
-                ["Homogeneous (Same DB Type)", "Heterogeneous (Schema Conversion)", "Hybrid Approach"])
-
-        db_downtime_tolerance = st.sidebar.selectbox("Downtime Tolerance",
-                ["Zero Downtime (CDC)", "Minimal (<1 hour)", "Low (<4 hours)", "Standard (<8 hours)"])
-
-        db_data_validation = st.sidebar.checkbox("Enable Data Validation", value=True)
-        db_parallel_migration = st.sidebar.checkbox("Parallel Database Migration", value=True)
-
-            # Database performance requirements
-        db_performance_tier = st.sidebar.selectbox("Performance Tier",
-                ["Burstable (t3)", "General Purpose (m5)", "Memory Optimized (r5)", "Compute Optimized (c5)"])
-
-        db_backup_retention = st.sidebar.number_input("Backup Retention (days)", min_value=1, max_value=35, value=7)
-        db_multi_az = st.sidebar.checkbox("Multi-AZ Deployment", value=True)
-            
-            # Add these to your existing return dictionary:
+        # NEW: Database migration configuration
         'db_migration_strategy': db_migration_strategy,
         'db_downtime_tolerance': db_downtime_tolerance,
         'db_data_validation': db_data_validation,
@@ -3923,6 +3908,10 @@ def render_navigation(self):
         'db_performance_tier': db_performance_tier,
         'db_backup_retention': db_backup_retention,
         'db_multi_az': db_multi_az,
+        'db_encryption_transit': db_encryption_transit,
+        'db_encryption_rest': db_encryption_rest,
+        'db_vpc_isolation': db_vpc_isolation
+    }
            
                     
         
