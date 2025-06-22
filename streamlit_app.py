@@ -3669,7 +3669,7 @@ def render_navigation(self):
     st.markdown('</div>', unsafe_allow_html=True)
     
     def render_sidebar_controls(self):
-    """Render sidebar configuration controls"""
+        """Render sidebar configuration controls"""
     st.sidebar.header("🏢 Enterprise Controls")                   
 
     # Get AWS configuration status
