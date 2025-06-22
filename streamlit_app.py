@@ -3030,16 +3030,7 @@ def _render_database_analysis(self, df_workloads):
             file_name="database_migration_recommendations.csv",
             mime="text/csv"
         )
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+      
     
     def __init__(self):
         self.calculator = EnterpriseCalculator()
@@ -3905,7 +3896,7 @@ def render_navigation(self):
         # ADD this section to your existing render_sidebar_controls method (before the return statement):
 
             # NEW: Database Migration Section
-            st.sidebar.subheader("🗄️ Database Migration")
+        st.sidebar.subheader("🗄️ Database Migration")
 
             # Database migration preferences
             db_migration_strategy = st.sidebar.selectbox("Migration Strategy",
