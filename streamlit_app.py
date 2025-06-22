@@ -2756,7 +2756,7 @@ class PDFReportGenerator:
 class MigrationPlatform:
     """Main application class for the Enterprise AWS Migration Platform"""
     def render_database_migration_tab(self, config, metrics):
-    """Render the enhanced database migration tab"""
+        """Render the enhanced database migration tab"""
     st.markdown('<div class="section-header">🗄️ Advanced Database Migration Analysis</div>', unsafe_allow_html=True)
     
     # Initialize components
