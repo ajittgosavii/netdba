@@ -3899,30 +3899,30 @@ def render_navigation(self):
         st.sidebar.subheader("🗄️ Database Migration")
 
             # Database migration preferences
-            db_migration_strategy = st.sidebar.selectbox("Migration Strategy",
+        db_migration_strategy = st.sidebar.selectbox("Migration Strategy",
                 ["Homogeneous (Same DB Type)", "Heterogeneous (Schema Conversion)", "Hybrid Approach"])
 
-            db_downtime_tolerance = st.sidebar.selectbox("Downtime Tolerance",
+        db_downtime_tolerance = st.sidebar.selectbox("Downtime Tolerance",
                 ["Zero Downtime (CDC)", "Minimal (<1 hour)", "Low (<4 hours)", "Standard (<8 hours)"])
 
-            db_data_validation = st.sidebar.checkbox("Enable Data Validation", value=True)
-            db_parallel_migration = st.sidebar.checkbox("Parallel Database Migration", value=True)
+        db_data_validation = st.sidebar.checkbox("Enable Data Validation", value=True)
+        db_parallel_migration = st.sidebar.checkbox("Parallel Database Migration", value=True)
 
             # Database performance requirements
-            db_performance_tier = st.sidebar.selectbox("Performance Tier",
+        db_performance_tier = st.sidebar.selectbox("Performance Tier",
                 ["Burstable (t3)", "General Purpose (m5)", "Memory Optimized (r5)", "Compute Optimized (c5)"])
 
-            db_backup_retention = st.sidebar.number_input("Backup Retention (days)", min_value=1, max_value=35, value=7)
-            db_multi_az = st.sidebar.checkbox("Multi-AZ Deployment", value=True)
+        db_backup_retention = st.sidebar.number_input("Backup Retention (days)", min_value=1, max_value=35, value=7)
+        db_multi_az = st.sidebar.checkbox("Multi-AZ Deployment", value=True)
             
             # Add these to your existing return dictionary:
-            'db_migration_strategy': db_migration_strategy,
-            'db_downtime_tolerance': db_downtime_tolerance,
-            'db_data_validation': db_data_validation,
-            'db_parallel_migration': db_parallel_migration,
-            'db_performance_tier': db_performance_tier,
-            'db_backup_retention': db_backup_retention,
-            'db_multi_az': db_multi_az,
+        'db_migration_strategy': db_migration_strategy,
+        'db_downtime_tolerance': db_downtime_tolerance,
+        'db_data_validation': db_data_validation,
+        'db_parallel_migration': db_parallel_migration,
+        'db_performance_tier': db_performance_tier,
+        'db_backup_retention': db_backup_retention,
+        'db_multi_az': db_multi_az,
            
                     
         
