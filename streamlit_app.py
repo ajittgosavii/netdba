@@ -4163,9 +4163,9 @@ region = "us-west-2"  # Your preferred compute region
             st.metric("💰 Total Cost", f"${metrics['cost_breakdown']['total']:,.0f}", budget_delta)
             st.markdown('</div>', unsafe_allow_html=True)
         
-        # ADD this condition to your existing tab rendering section in the run method:
-        elif st.session_state.active_tab == "database":  # NEW TAB
-            self.render_database_migration_tab(config, metrics)
+                # ADD this condition to your existing tab rendering section in the run method:
+                elif st.session_state.active_tab == "database":  # NEW TAB
+                    self.render_database_migration_tab(config, metrics)
         
         # Enhanced Real-time AI-Powered Recommendations Section
         st.markdown('<div class="section-header">🤖 AI-Powered Recommendations</div>', unsafe_allow_html=True)
